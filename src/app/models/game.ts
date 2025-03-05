@@ -6,10 +6,10 @@ export class Game {
 
     constructor() {
         for (let index = 1; index < 14; index++) {
-            this.stack.push('spade_' + index);
-            this.stack.push('hearts_' + index);
-            this.stack.push('clubs_' + index);
-            this.stack.push('diamonds_' + index);
+            this.stack.push('Spade_' + index);
+            this.stack.push('Heart_' + index);
+            this.stack.push('Club_' + index);
+            this.stack.push('Diamond_' + index);
         }
 
         this.stack = this.shuffle(this.stack);

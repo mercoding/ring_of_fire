@@ -12,22 +12,25 @@ import { Game } from '../models/game';
 export class GameComponent {
   pickCardAnimation = false;
   currentCard:string = '';
-  //game:Game
+  game:Game;
   
   constructor() {
-    //this.game = new Game();
-    //this.newGame();
+    this.game = new Game();
   }
 
   newGame() {
-    //this.game = new Game();
-    //console.log(this.game);
+    this.game = new Game();
   }
 
   takeCard() {
+      if(this.pickCardAnimation) return;
+
       this.pickCardAnimation = true;
-      this.currentCard = "";
-      //this.currentCard = this.game.stack.pop().toString();
+      this.currentCard = this.game.stack.pop() as string;
+      setTimeout(() => {
+        this.pickCardAnimation = false;
+        this.game.playedCards.push(this.currentCard);
+      }, 1000);
   }
 
 }

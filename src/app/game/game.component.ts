@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Game } from '../models/game';
+import { PlayerComponent } from "../player/player.component";
 
 @Component({
   selector: 'app-game',
-  imports: [CommonModule],
+  imports: [CommonModule, PlayerComponent],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
   host: { 'hostID': crypto.randomUUID().toString() }

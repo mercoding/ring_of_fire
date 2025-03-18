@@ -2,10 +2,22 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Game } from '../models/game';
 import { PlayerComponent } from "../player/player.component";
+import { MatIconModule } from '@angular/material/icon';
+import {
+  MAT_DIALOG_DATA,
+  MatDialog,
+  MatDialogActions,
+  MatDialogClose,
+  MatDialogContent,
+  MatDialogRef,
+  MatDialogTitle,
+} from '@angular/material/dialog';
+import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+
 
 @Component({
   selector: 'app-game',
-  imports: [CommonModule, PlayerComponent],
+  imports: [CommonModule, PlayerComponent, MatIconModule],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
   host: { 'hostID': crypto.randomUUID().toString() }
@@ -15,7 +27,7 @@ export class GameComponent {
   currentCard:string = '';
   game:Game;
   
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.game = new Game();
   }
 
@@ -34,4 +46,13 @@ export class GameComponent {
       }, 1000);
   }
 
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogAddPlayerComponent, {});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      
+    });
+  }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit , Input, OnChanges } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 
 @Component({
@@ -7,7 +7,7 @@ import {MatCardModule} from '@angular/material/card';
   templateUrl: './game-info.component.html',
   styleUrl: './game-info.component.scss'
 })
-export class GameInfoComponent {
+export class GameInfoComponent implements OnInit, OnChanges {
   cardAction = [
     { title: "Ass, Waterfall", description: "All players take turns drinking. In a clockwise direction, they may only stop drinking when the player sitting to their right has finished their waterfall. The player who draws the ace may stop drinking first (whenever they wish)." },
     { title: "2, is for you", description: "You decide who drinks." },
@@ -23,4 +23,23 @@ export class GameInfoComponent {
     { title: "Queen", description: "The player may shout 'Never have I ever...' for one round. The losers drink." },
     { title: "King", description: "If a King is drawn, the player may pour a drink of their choice into the King's Cup. If the fourth King is drawn, the player must immediately empty the King's Cup in the middle of the game." }
   ];
+
+  title: string = '';
+  description: string = '';
+  @Input() card: string = '';
+
+  constructor() {}
+
+  ngOnInit(): void {
+
+  }
+
+  ngOnChanges(): void {
+    if(!this.card) return;
+    console.log('Current card is: ', this.card);
+    console.log('Current number is: ', this.card.split('_')[1]);
+    let cardNumber = +this.card.split('_')[1];
+    this.title = this.cardAction[cardNumber - 1].title;
+    this.description = this.cardAction[cardNumber - 1].description;
+  }
 }

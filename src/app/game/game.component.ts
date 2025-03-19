@@ -13,11 +13,12 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { GameInfoComponent } from "../game-info/game-info.component";
 
 
 @Component({
   selector: 'app-game',
-  imports: [CommonModule, PlayerComponent, MatIconModule],
+  imports: [CommonModule, PlayerComponent, MatIconModule, GameInfoComponent],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
   host: { 'hostID': crypto.randomUUID().toString() }
@@ -50,8 +51,8 @@ export class GameComponent {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent, {});
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe(name => {
+      this.game.players.push(name);
       
     });
   }

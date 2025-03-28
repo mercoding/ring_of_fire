@@ -8,3 +8,9 @@
 .title {
     margin: 8px 0 0 8px;
 }
+
+mat-card {
+    @media (max-width: 720px) {
+        min-height: 150px;
+    }
+}

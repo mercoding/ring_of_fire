@@ -8,6 +8,11 @@
     align-items: center;
 }
 
+.card {
+    width: 128px;
+    height: auto;
+}
+
 .card-stack {
     position: relative;
     img {
@@ -40,6 +45,7 @@
 .player-position {
     position: absolute;
     right: 0;
+    z-index: 1;
 }
 
 .btn-add {
@@ -53,6 +59,12 @@
     bottom: 32px;
     left: 100px;
     right: 100px;
+
+    @media (max-width: 720px) {
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
 }
 
 @keyframes pick-card-animation {
@@ -70,5 +82,19 @@
 
     100% {
         transform: scale(1.3) translateX(140px) translateY(-100px) rotate(-10deg);
+    }
+}
+
+.scrollable-container-x {
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    app-player-mobile {
+        margin-left: 8px;
     }
 }
